@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghebella Pizzaria | Autêntica pizza italiana no CIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Estilos Gerais */
+        :root {
+          --primary-color: #d32f2f;
+          --primary-dark: #b71c1c;
+          --secondary-color: #f5f5f5;
+          --dark-color: #333;
+          --light-color: #fff;
+          --text-color: #333;
+          --text-light: #777;
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          font-family: 'Poppins', sans-serif;
+          line-height: 1.6;
+          background-color: var(--secondary-color);
+          color: var(--text-color);
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        .container {
+          width: 90%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 15px;
+        }
+
+        .btn {
+          display: inline-block;
+          background-color: var(--primary-color);
+          color: var(--light-color);
+          padding: 12px 25px;
+          border-radius: 30px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 0.9rem;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+        }
+
+        .btn:hover {
+          background-color: var(--primary-dark);
+          transform: translateY(-3px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+          text-align: center;
+          margin-bottom: 50px;
+          position: relative;
+          font-size: 2.2rem;
+          color: var(--primary-color);
+        }
+
+        .section-title::after {
+          content: '';
+          display: block;
+          width: 80px;
+          height: 4px;
+          background-color: var(--primary-color);
+          margin: 15px auto 0;
+        }
+
+        /* Header */
+        header {
+          background-color: var(--primary-color);
+          color: var(--light-color);
+          padding: 20px 0;
+          text-align: center;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+          font-size: 2.8rem;
+          font-weight: 700;
+          margin-bottom: 10px;
+          font-family: 'Dancing Script', cursive;
+        }
+
+        .tagline {
+          font-size: 1.2rem;
+          font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+          background-color: var(--primary-dark);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+          display: flex;
+          justify-content: center;
+          list-style: none;
+          padding: 15px 0;
+        }
+
+        nav li {
+          margin: 0 20px;
+        }
+
+        nav a {
+          color: var(--light-color);
+          font-weight: 500;
+          padding: 5px 10px;
+          border-radius: 4px;
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        nav a::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          background: var(--light-color);
+          bottom: 0;
+          left: 0;
+          transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+          width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+          background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+          background-size: cover;
+          background-position: center;
+          height: 80vh;
+          min-height: 500px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: var(--light-color);
+        }
+
+        .hero-content {
+          max-width: 800px;
+          padding: 0 20px;
+        }
+
+        .hero h1 {
+          font-size: 3.5rem;
+          margin-bottom: 20px;
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+          margin-bottom: 30px;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Menu Section */
+        #menu {
+          padding: 80px 0;
+          background-color: var(--light-color);
+        }
+
+        .menu-category {
+          margin-bottom: 50px;
+        }
+
+        .menu-category h3 {
+          font-size: 1.8rem;
+          color: var(--primary-color);
+          margin-bottom: 20px;
+          padding-bottom: 10px;
+          border-bottom: 2px dashed var(--primary-color);
+        }
+
+        .menu-items {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 30px;
+        }
+
+        .menu-item {
+          background-color: var(--secondary-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+          transform: translateY(-10px);
+        }
+
+        .menu-item-img {
+          height: 200px;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .menu-item-content {
+          padding: 20px;
+        }
+
+        .menu-item-content h4 {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+          color: var(--primary-color);
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .menu-item-content p {
+          color: var(--text-light);
+          font-size: 0.9rem;
+        }
+
+        /* About Section */
+        #about {
+          padding: 80px 0;
+          background-color: var(--secondary-color);
+        }
+
+        .about-content {
+          display: flex;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .about-text {
+          flex: 1;
+        }
+
+        .about-text p {
+          margin-bottom: 20px;
+          font-size: 1.1rem;
+        }
+
+        .about-image {
+          flex: 1;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Location Section */
+        #location {
+          padding: 80px 0;
+          background-color: var(--light-color);
+        }
+
+        .location-info {
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        .location-info p {
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+        }
+
+        .location-info strong {
+          color: var(--primary-color);
+        }
+
+        .map-container {
+          height: 400px;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          margin-top: 30px;
+        }
+
+        /* Contact Section */
+        #contact {
+          padding: 80px 0;
+          background-color: var(--secondary-color);
+        }
+
+        .contact-container {
+          display: flex;
+          gap: 50px;
+        }
+
+        .contact-info {
+          flex: 1;
+        }
+
+        .contact-info h3 {
+          font-size: 1.5rem;
+          color: var(--primary-color);
+          margin-bottom: 20px;
+        }
+
+        .contact-info p {
+          margin-bottom: 15px;
+          display: flex;
+          align-items: center;
+        }
+
+        .contact-info i {
+          margin-right: 10px;
+          color: var(--primary-color);
+          font-size: 1.2rem;
+          width: 25px;
+          text-align: center;
+        }
+
+        .contact-form {
+          flex: 1;
+        }
+
+        .form-group {
+          margin-bottom: 20px;
+        }
+
+        .form-group label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+          width: 100%;
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-family: inherit;
+          font-size: 1rem;
+          transition: border 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+          outline: none;
+          border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+          min-height: 150px;
+          resize: vertical;
+        }
+
+        /* Gallery Section */
+        #gallery {
+          padding: 80px 0;
+          background-color: var(--light-color);
+        }
+
+        .gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 20px;
+        }
+
+        .gallery-item {
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+          height: 250px;
+        }
+
+        .gallery-item:hover {
+          transform: scale(1.05);
+        }
+
+        .gallery-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+          padding: 80px 0;
+          background-color: var(--secondary-color);
+        }
+
+        .testimonial-slider {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .testimonial {
+          background-color: var(--light-color);
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          margin: 20px;
+          text-align: center;
+        }
+
+        .testimonial p {
+          font-style: italic;
+          margin-bottom: 20px;
+          font-size: 1.1rem;
+        }
+
+        .testimonial .author {
+          font-weight: 600;
+          color: var(--primary-color);
+        }
+
+        /* Promotions Section */
+        #promotions {
+          padding: 80px 0;
+          background-color: var(--light-color);
+        }
+
+        .promotion-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 30px;
+        }
+
+        .promotion-card {
+          background-color: var(--secondary-color);
+          border-radius: 10px;
+          padding: 30px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          border-top: 5px solid var(--primary-color);
+          transition: transform 0.3s ease;
+        }
+
+        .promotion-card:hover {
+          transform: translateY(-10px);
+        }
+
+        .promotion-card h3 {
+          color: var(--primary-color);
+          margin-bottom: 15px;
+          font-size: 1.5rem;
+        }
+
+        .promotion-card p {
+          margin-bottom: 10px;
+        }
+
+        .promotion-card .valid-date {
+          font-weight: 600;
+          color: var(--text-light);
+          font-size: 0.9rem;
+        }
+
+        /* Online Order Section */
+        #online-order {
+          padding: 80px 0;
+          background-color: var(--primary-color);
+          color: var(--light-color);
+          text-align: center;
+        }
+
+        #online-order .section-title {
+          color: var(--light-color);
+        }
+
+        #online-order .section-title::after {
+          background-color: var(--light-color);
+        }
+
+        .order-steps {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 30px;
+          margin-bottom: 40px;
+        }
+
+        .step {
+          background-color: var(--light-color);
+          color: var(--primary-color);
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step span {
+          font-size: 2.5rem;
+          margin-bottom: 10px;
+        }
+
+        .order-buttons {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+
+        .order-buttons .btn {
+          background-color: var(--light-color);
+          color: var(--primary-color);
+        }
+
+        .order-buttons .btn:hover {
+          background-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+          background-color: var(--dark-color);
+          color: var(--light-color);
+          padding: 50px 0 20px;
+          text-align: center;
+        }
+
+        .footer-content {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 30px;
+          margin-bottom: 30px;
+        }
+
+        .footer-section {
+          flex: 1;
+          min-width: 250px;
+        }
+
+        .footer-section h3 {
+          color: var(--primary-color);
+          margin-bottom: 20px;
+          font-size: 1.3rem;
+        }
+
+        .footer-section p {
+          margin-bottom: 10px;
+        }
+
+        .social-links {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin-top: 20px;
+        }
+
+        .social-links a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          background-color: var(--primary-color);
+          color: var(--light-color);
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+          background-color: var(--light-color);
+          color: var(--primary-color);
+          transform: translateY(-5px);
+        }
+
+        .copyright {
+          margin-top: 30px;
+          padding-top: 20px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          font-size: 0.9rem;
+          color: var(--text-light);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+          .about-content,
+          .contact-container {
+            flex-direction: column;
+          }
+          
+          .about-image {
+            order: -1;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero h1 {
+            font-size: 2.5rem;
+          }
+          
+          .hero p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+          }
+          
+          nav ul {
+            flex-direction: column;
+            align-items: center;
+          }
+          
+          nav li {
+            margin: 5px 0;
+          }
+          
+          .section-title {
+            font-size: 1.8rem;
+          }
+          
+          .order-steps {
+            gap: 15px;
+          }
+          
+          .step {
+            width: 120px;
+            height: 120px;
+          }
+          
+          .step span {
+            font-size: 2rem;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .logo {
+            font-size: 2rem;
+          }
+          
+          .hero h1 {
+            font-size: 2rem;
+          }
+          
+          .section-title {
+            font-size: 1.5rem;
+          }
+          
+          .order-steps {
+            flex-direction: column;
+            align-items: center;
+          }
+          
+          .btn {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            width: 100%;
+            margin-bottom: 10px;
+          }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Ghebella Pizzaria</div>
+        <p class="tagline">Autêntica pizza no coração do CIC</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Cardápio</a></li>
+            <li><a href="#promotions">Promoções</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#gallery">Galeria</a></li>
+            <li><a href="#location">Localização</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>A melhor pizza de Curitiba</h1>
+            <p>Massas artesanais, ingredientes frescos e forno a lenha</p>
+            <a href="#menu" class="btn">Conheça nosso cardápio</a>
+        </div>
+    </section>
+    
+    <section id="menu">
+        <div class="container">
+            <h2 class="section-title">Nosso Cardápio</h2>
+            
+            <div class="menu-category">
+                <h3>Pizzas Tradicionais (8 pedaços)</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza Margherita" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h4>Margherita <span>R$ Valor</span></h4>
+                            <p>Molho de tomate, mussarela especial, manjericão fresco e azeite de oliva.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza Calabresa" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h4>Calabresa <span>R$ Valor</span></h4>
+                            <p>Molho de tomate, mussarela, calabresa artesanal, cebola e orégano.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1588315029754-2dd089d39a1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza Portuguesa" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h4>Portuguesa <span>R$ Valor</span></h4>
+                            <p>Molho de tomate, mussarela, presunto, ovos, cebola, pimentão e azeitonas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza 4 Queijos" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h4>4 Queijos <span>R$ Valor</span></h4>
+                            <p>Molho de tomate, mussarela, provolone, gorgonzola e parmesão ralado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Pizzas Premium (8 pedaços)</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza Trufada" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h4>Strogonoff de carne <span>R$ Valor</span></h4>
+                            <p> molho de tomate, mussarela, strogonoff de carne, batata palha e orégano..</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza Frutos do Mar" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h4>Milho verde <span>R$ Valor</span></h4>
+                            <p> molho de tomate, mussarela, milho e orégano.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#contact" class="btn">Faça seu pedido agora</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="promotions">
+        <div class="container">
+            <h2 class="section-title">Promoções Especiais</h2>
+            
+            <div class="promotion-cards">
+                <div class="promotion-card">
+                    <h3>Possivel promoção</h3>
+                    <p>Possivel promoção</p>
+                    <p class="valid-date">Duração</p>
+                </div>
+                
+                <div class="promotion-card">
+                    <h3>Possivel promoção</h3>
+                    <p>Possivel promoção</p>
+                    <p class="valid-date">Duração</p>
+                </div>
+                
+                <div class="promotion-card">
+                    <h3>Possivel Promoção</h3>
+                    <p>Possivel promoção</p>
+                    <p class="valid-date">Duração</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Nós</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A Ghebella Pizzaria nasceu da paixão pela autêntica pizza. Nossas receitas são tradicionais, passadas de geração em geração, com um toque especial de inovação.</p>
+                    <p>Localizada no Centro Comercial Neoville Center Mall, no coração da Cidade Industrial de Curitiba, nossa pizzaria se destaca pela qualidade dos ingredientes e pelo cuidado artesanal em cada pizza.</p>
+                    <p>Nossa massa é preparada diariamente com farinha especial italiana, fermentação natural e assada em forno a lenha, garantindo aquela crocância e sabor inigualáveis.</p>
+                    <p>Venha nos visitar e experimente a verdadeira pizza napolitana com o toque especial da Ghebella!</p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Forno a lenha da Ghebella Pizzaria">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Nossa Galeria</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Forno a lenha">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ambiente da pizzaria">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ingredientes frescos">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipe Ghebella">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza saindo do forno">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pizza pronta para servir">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="location">
+        <div class="container">
+            <h2 class="section-title">Onde Estamos</h2>
+            
+            <div class="location-info">
+                <p><strong>Centro Comercial Neoville Center Mall</strong></p>
+                <p>Rua Pedro Gusso, 2001 - Lojas 10 e 11</p>
+                <p>Cidade Industrial de Curitiba, Curitiba - PR</p>
+                <p>CEP: 81310-300</p>
+                
+                <p style="margin-top: 20px;"><strong>Horário de Funcionamento:</strong></p>
+                <p>Terça a Domingo: 18h às 23:30h</p>
+                
+            </div>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.456678789012!2d-49.28082368498529!3d-25.45998398377688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce472f8f33f4f%3A0x5b5a5e5b5a5e5b5a!2sCentro%20Comercial%20Neoville%20Center%20Mall!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <section id="online-order">
+        <div class="container">
+            <h2 class="section-title">Peça Online</h2>
+            
+            <div class="order-steps">
+                <div class="step">
+                    <span>1</span>
+                    <p>Escolha suas pizzas</p>
+                </div>
+                <div class="step">
+                    <span>2</span>
+                    <p>Informe seu endereço</p>
+                </div>
+                <div class="step">
+                    <span>3</span>
+                    <p>Escolha a forma de pagamento</p>
+                </div>
+                <div class="step">
+                    <span>4</span>
+                    <p>Aguarde a entrega</p>
+                </div>
+            </div>
+            
+            <div class="order-buttons">
+                <a href="https://www.ifood.com.br/" class="btn" target="_blank">Pedir pelo iFood</a>
+                <a href="https://wa.me/5541997295850" class="btn" target="_blank">Pedir pelo WhatsApp</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">O que dizem nossos clientes</h2>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"Melhor pizza do CIC! Massa perfeita e ingredientes de qualidade. A Portuguesa é minha favorita!"</p>
+                    <p class="author">- João Silva</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"Ambiente aconchegante e atendimento excelente. Recomendo a pizza 4 queijos e o chopp artesanal!"</p>
+                    <p class="author">- Maria Souza</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"Sou cliente há anos e nunca me decepcionei. A pizza trufada é divina! Vale cada centavo."</p>
+                    <p class="author">- Carlos Oliveira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Fale Conosco</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Pedro Gusso, 2001 - Lojas 10 e 11, CIC - Curitiba/PR</p>
+                    <p><i class="fas fa-phone-alt"></i> (41) 99729-5850</p>
+                    <p><i class="fas fa-envelope"></i> contato@ghebellapizzaria.com.br</p>
+                    <p><i class="fas fa-clock"></i> Ter-Qui: 18h-23h | Sex-Sáb: 18h-00h | Dom: 18h-22h</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem:</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ghebella Pizzaria</h3>
+                    <p>Autêntica pizza italiana no coração da Cidade Industrial de Curitiba.</p>
+                    <p>Massas artesanais, ingredientes frescos e forno a lenha.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horário de Funcionamento</h3>
+                    <p>Terça a Quinta: 18h às 23h</p>
+                    <p>Sexta e Sábado: 18h às 00h</p>
+                    <p>Domingo: 18h às 22h</p>
+                    <p>Segunda: Fechado</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contato
+                    </h3>
+                
