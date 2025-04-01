@@ -152,6 +152,72 @@
           width: 100%;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+          display: none;
+          background: none;
+          border: none;
+          color: var(--light-color);
+          font-size: 1.5rem;
+          cursor: pointer;
+          padding: 10px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: var(--primary-dark);
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+          border-radius: 5px;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .dropdown-content a {
+          color: var(--light-color);
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: center;
+          transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+          background-color: var(--primary-color);
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .dropdown-btn::after {
+          content: '\f078';
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 900;
+          margin-left: 8px;
+          font-size: 0.8rem;
+          transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-btn::after {
+          transform: rotate(180deg);
+        }
+
         /* Hero Section */
         .hero {
           background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
@@ -619,6 +685,7 @@
           nav ul {
             flex-direction: column;
             align-items: center;
+            display: none;
           }
           
           nav li {
@@ -640,6 +707,30 @@
           
           .step span {
             font-size: 2rem;
+          }
+
+          .mobile-menu-btn {
+            display: block;
+            margin: 0 auto;
+          }
+
+          .dropdown-content {
+            position: static;
+            transform: none;
+            box-shadow: none;
+            display: none;
+          }
+
+          .dropdown:hover .dropdown-content {
+            display: none;
+          }
+
+          .dropdown.active .dropdown-content {
+            display: block;
+          }
+
+          nav ul.show {
+            display: flex;
           }
         }
 
@@ -677,14 +768,20 @@
     </header>
     
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#menu">Cardápio</a></li>
-            <li><a href="#promotions">Promoções</a></li>
-            <li><a href="#about">Sobre Nós</a></li>
-            <li><a href="#gallery">Galeria</a></li>
-            <li><a href="#location">Localização</a></li>
-            <li><a href="#contact">Contato</a></li>
+        <button class="mobile-menu-btn">
+            </button>
+        <ul id="main-nav">
+            <li><a href="#home">início</a></li>
+            <li class="dropdown">
+                <a href="#menu" class="dropdown-btn">Cardápio</a>
+                <div class="dropdown-content">
+                    <a href="#promotions">Promoções</a>
+                    <a href="#about">Sobre Nós</a>
+                    <a href="#location">Localização</a>
+                    <a href="#gallery">Galeria</a>
+                    <a href="#contact">Contato</a>
+                </div>
+            </li>
         </ul>
     </nav>
     
@@ -931,53 +1028,3 @@
                 
                 <div class="contact-form">
                     <form>
-                        <div class="form-group">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Telefone:</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Mensagem:</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Enviar Mensagem</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Ghebella Pizzaria</h3>
-                    <p>Autêntica pizza italiana no coração da Cidade Industrial de Curitiba.</p>
-                    <p>Massas artesanais, ingredientes frescos e forno a lenha.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Horário de Funcionamento</h3>
-                    <p>Terça a Domingo: 18h às 23:30h</p>
-     
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contato
-                      </h3>
-
-                      
-                      <p>(41) 99729-5850</p>
-                    
-                
