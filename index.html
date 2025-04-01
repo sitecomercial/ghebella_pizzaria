@@ -29,6 +29,7 @@
           line-height: 1.6;
           background-color: var(--secondary-color);
           color: var(--text-color);
+          padding-top: 60px; /* Adicionado para compensar a navbar fixa */
         }
 
         a {
@@ -108,38 +109,37 @@
           font-weight: 300;
         }
 
-        /* Navigation */
-/* Navigation */
-nav {
-  background-color: var(--primary-dark);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        /* Navigation - Modificado */
+        nav {
+          background-color: var(--primary-dark);
+          position: fixed; /* Alterado de sticky para fixed */
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 100;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 10px 0; /* Reduzido de 15px para 10px */
-}
+        nav ul {
+          display: flex;
+          justify-content: center;
+          list-style: none;
+          padding: 10px 0;
+        }
 
-nav li {
-  margin: 0 15px; /* Reduzido de 20px para 15px */
-}
+        nav li {
+          margin: 0 15px;
+        }
 
-nav a {
-  color: var(--light-color);
-  font-weight: 500;
-  padding: 5px 8px; /* Reduzido de 5px 10px */
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  position: relative;
-  font-size: 0.9rem; /* Adicionado tamanho de fonte menor */
-}
-
-/* Mantenha o restante do CSS como está */
+        nav a {
+          color: var(--light-color);
+          font-weight: 500;
+          padding: 5px 8px;
+          border-radius: 4px;
+          transition: all 0.3s ease;
+          position: relative;
+          font-size: 0.9rem;
+        }
 
         nav a::after {
           content: '';
@@ -154,6 +154,21 @@ nav a {
 
         nav a:hover::after {
           width: 100%;
+        }
+
+        /* Botão Menu Mobile - Novo */
+        .mobile-menu-btn {
+          display: none;
+          background: var(--primary-dark);
+          color: white;
+          border: none;
+          font-size: 1.5rem;
+          padding: 10px;
+          position: fixed;
+          top: 10px;
+          right: 10px;
+          z-index: 101;
+          cursor: pointer;
         }
 
         /* Hero Section */
@@ -611,6 +626,10 @@ nav a {
         }
 
         @media (max-width: 768px) {
+          body {
+            padding-top: 50px; /* Ajuste para o menu mobile */
+          }
+          
           .hero h1 {
             font-size: 2.5rem;
           }
@@ -620,13 +639,30 @@ nav a {
             margin-bottom: 20px;
           }
           
+          /* Menu Mobile - Modificado */
+          .mobile-menu-btn {
+            display: block;
+          }
+          
           nav ul {
+            display: none;
             flex-direction: column;
-            align-items: center;
+            padding: 0;
+            background-color: var(--primary-dark);
           }
           
           nav li {
-            margin: 5px 0;
+            margin: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+          }
+          
+          nav a {
+            display: block;
+            padding: 15px;
+          }
+          
+          nav.active ul {
+            display: flex;
           }
           
           .section-title {
