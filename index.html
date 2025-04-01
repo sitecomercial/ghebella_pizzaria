@@ -117,27 +117,38 @@
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
+        .menu-toggle {
+          display: none;
+          cursor: pointer;
+          color: var(--light-color);
+          font-size: 1.5rem;
+          padding: 10px;
+        }
+
         nav ul {
           display: flex;
           justify-content: center;
           list-style: none;
-          padding: 10px 0; /* Reduzido de 15px para 10px */
-          flex-direction: column; /* Muda para coluna em dispositivos móveis */
-          display: none; /* Oculta o menu por padrão */
+          padding: 15px 0;
+          transition: max-height 0.3s ease;
+        }
+
+        nav ul.collapsed {
+          max-height: 0;
+          overflow: hidden;
         }
 
         nav li {
-          margin: 5px 0; /* Reduzido de 20px para 15px */
+          margin: 0 20px;
         }
 
         nav a {
           color: var(--light-color);
           font-weight: 500;
-          padding: 5px 8px; /* Reduzido de 5px 10px */
+          padding: 5px 10px;
           border-radius: 4px;
           transition: all 0.3s ease;
           position: relative;
-          font-size: 0.9rem; /* Adicionado tamanho de fonte menor */
         }
 
         nav a::after {
@@ -153,18 +164,6 @@
 
         nav a:hover::after {
           width: 100%;
-        }
-
-        /* Botão do menu */
-        .menu-toggle {
-          display: none; /* Oculta o botão por padrão */
-          background-color: var(--primary-color);
-          color: var(--light-color);
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 1rem;
         }
 
         /* Hero Section */
@@ -658,8 +657,7 @@
           }
 
           .menu-toggle {
-            display: block; /* Exibe o botão em dispositivos móveis */
-            margin: 10px auto;
+            display: block;
           }
         }
 
@@ -691,58 +689,14 @@
     </style>
 </head>
 <body>
-
-<header>
-    <div class="container">
-        <h1 class="logo">Ghebella Pizzaria</h1>
-        <p class="tagline">Autêntica pizza italiana no CIC</p>
-    </div>
-</header>
-
-<nav>
-    <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
-    <ul id="menu-list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#cardapio">Cardápio</a></li>
-        <li><a href="#promocoes">Promoções</a></li>
-        <li><a href="#sobre-nos">Sobre Nós</a></li>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#localizacao">Localização</a></li>
-        <li><a href="#contato">Contato</a></li>
-    </ul>
-</nav>
-
-<div class="hero">
-    <div class="hero-content">
-        <h1>Bem-vindo à Ghebella Pizzaria</h1>
-        <p>Experimente nossas deliciosas pizzas feitas com ingredientes frescos e autênticos.</p>
-        <button class="btn">Faça seu pedido</button>
-    </div>
-</div>
-
-<!-- O restante do seu conteúdo vai aqui -->
-
-<script>
-    function toggleMenu() {
-        const menuList = document.getElementById('menu-list');
-        if (menuList.style.display === 'flex') {
-            menuList.style.display = 'none';
-        } else {
-            menuList.style.display = 'flex';
-        }
-    }
-</script>
-
-</body>
-</html>
-<body>
     <header>
         <div class="logo">Ghebella Pizzaria</div>
         <p class="tagline">Autêntica pizza no coração do CIC</p>
     </header>
     
     <nav>
-        <ul>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-chevron-down"></i></div>
+        <ul id="menuList" class="collapsed">
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Cardápio</a></li>
             <li><a href="#promotions">Promoções</a></li>
@@ -977,70 +931,4 @@
     
     <section id="contact">
         <div class="container">
-            <h2 class="section-title">Fale Conosco</h2>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Informações de Contato</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Rua Pedro Gusso, 2001 - Lojas 10 e 11, CIC - Curitiba/PR</p>
-                    <p><i class="fas fa-phone-alt"></i> (41) 99729-5850</p>
-                    <p><i class="fas fa-envelope"></i> contato@ghebellapizzaria.com.br</p>
-                    <p><i class="fas fa-clock"></i> Ter-Qui: 18h-23h | Sex-Sáb: 18h-00h | Dom: 18h-22h</p>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Telefone:</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Mensagem:</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Enviar Mensagem</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Ghebella Pizzaria</h3>
-                    <p>Autêntica pizza italiana no coração da Cidade Industrial de Curitiba.</p>
-                    <p>Massas artesanais, ingredientes frescos e forno a lenha.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Horário de Funcionamento</h3>
-                    <p>Terça a Quinta: 18h às 23h</p>
-                    <p>Sexta e Sábado: 18h às 00h</p>
-                    <p>Domingo: 18h às 22h</p>
-                    <p>Segunda: Fechado</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contato
-                    </h3>
-                
+            <h2 class="section-title">Fale
